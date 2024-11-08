@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAPPY TEACHERS DAY</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-image: url('1919.gif');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            color: #00ffcc;
+        }
+
+        .border-wrapper {
+            border: 10px solid transparent;
+            border-radius: 15px;
+            animation: borderAnimation 5s linear infinite;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(255, 0, 85, 0.5), 0 0 40px rgba(0, 204, 255, 0.5);
+            border-image-slice: 1;
+        }
+
+        @keyframes borderAnimation {
+            0% { border-image-source: linear-gradient(45deg, red, blue); }
+            25% { border-image-source: linear-gradient(45deg, blue, green); }
+            50% { border-image-source: linear-gradient(45deg, green, yellow); }
+            75% { border-image-source: linear-gradient(45deg, yellow, red); }
+            100% { border-image-source: linear-gradient(45deg, red, blue); }
+        }
+
+        h1 {
+            font-size: 2.5em;
+            text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ccff, 0 0 15px #00ccff;
+            margin-bottom: 20px;
+        }
+
+        .teacher-button {
+            padding: 10px 20px;
+            font-size: 1.5em;
+            margin: 10px;
+            cursor: pointer;
+            background: linear-gradient(45deg, #ff0055, #00ccff);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 10px rgba(255, 0, 85, 0.5), 0 0 25px rgba(255, 0, 85, 0.7);
+        }
+
+        .teacher-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 204, 255, 0.5);
+        }
+
+        .teacher-container {
+            display: flex;
+            align-items: center;
+            margin: 10px;
+        }
+
+        .teacher-image {
+            width: 50px; /* Normal size */
+            height: 50px; /* Normal size */
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        /* Additional styling for input and buttons */
+        .custom-message {
+            margin: 20px;
+        }
+
+        .custom-message input {
+            padding: 10px;
+            width: 40%;
+            max-width: 300px;
+            border: 1px solid #00ccff;
+            border-radius: 5px;
+            color: white;
+            background-color: #333;
+            box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+            margin-right: 10px;
+        }
+
+        .custom-message button {
+            padding: 10px 15px;
+            background: linear-gradient(45deg, #ff0055, #00ccff);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            box-shadow: 0 4px 10px rgba(255, 0, 85, 0.5);
+        }
+
+        .custom-message button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 204, 255, 0.5);
+        }
+
+        .thank-you-message {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #FFD700;
+        }
+
+        .ninja-gif {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="border-wrapper">
+        <h1>HAPPY TEACHERS DAY!</h1> 
+
+        <div id="buttons">
+            <div class="teacher-container">
+                <img src="66666.PNG" alt="Mr. Cabrido" class="teacher-image" onclick="toggleFullscreen(this)">
+                <button class="teacher-button" onclick="showAppreciation('Mr. Cabrido')">Mr. Cabrido</button>
+            </div>
+            <div class="teacher-container">
+                <img src="098.png" alt="Ms. Tugas" class="teacher-image" onclick="toggleFullscreen(this)">
+                <button class="teacher-button" onclick="showAppreciation('Ms. Tugas')">Ms. Tugas</button>
+            </div>
+            <div class="teacher-container">
+                <img src="pop.JPEG" alt="Mr. Saraza" class="teacher-image" onclick="toggleFullscreen(this)">
+                <button class="teacher-button" onclick="showAppreciation('Mr. Saraza')">Mr. Saraza</button>
+            </div>
+            <div class="teacher-container">
+                <img src="pep.png" alt="Mr. Nobleza" class="teacher-image" onclick="toggleFullscreen(this)">
+                <button class="teacher-button" onclick="showAppreciation('Mr. Nobleza')">Mr. Nobleza</button>
+            </div>
+        </div>
+
+        <!-- Box image below the teacher's name -->
+        <img src="box.png" alt="Box" style="margin: 20px; width: 200px;">
+
+        <div class="custom-message">
+            <input type="text" id="teacherName" placeholder="Enter teacher's name..." />
+            <input type="text" id="customMessage" placeholder="Type your appreciation message here..." />
+            <button onclick="sendCustomMessage()">Send Message</button>
+        </div>
+
+        <audio id="backgroundMusic" controls loop>
+            <source src="4.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+        <audio id="thankYouSound" src=".mp3"></audio>
+        <audio id="applauseSound" src="3.mp3"></audio>
+        
+        <div class="thank-you-message" id="thankYouDisplay"></div>
+
+        <img src="666.gif" alt="Ninja Jumping" class="ninja-gif" id="ninjaGif">
+    </div>
+
+    <script>
+        const teachers = ['Mr. Cabrido', 'Ms. Tugas', 'Mrs. Saraza', 'Mr. Nobleza'];
+
+        function showAppreciation(teacher) {
+            let message;
+            switch (teacher) {
+                case 'Mr. Cabrido':
+                    message = "Thank you, Mr. Cabrido, for always inspiring us!";
+                    break;
+                case 'Ms. Tugas':
+                    message = "Thank you, Ms. Tugas, for your endless support!";
+                    break;
+                case 'Mrs. Saraza':
+                    message = "Thank you, Mrs. Saraza, for your patience and guidance!";
+                    break;
+                case 'Mr. Nobleza':
+                    message = "Thank you, Mr. Nobleza, for making learning fun!";
+                    break;
+                default:
+                    message = "Thank you for being a great teacher!";
+            }
+            displayThankYouMessage(message);
+            // Call other functions like triggerConfetti(), playSound(), triggerNinja() if needed
+        }
+
+        function toggleFullscreen(img) {
+            if (img.requestFullscreen) {
+                img.requestFullscreen();
+            } else if (img.mozRequestFullScreen) { // Firefox
+                img.mozRequestFullScreen();
+            } else if (img.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                img.webkitRequestFullscreen();
+            } else if (img.msRequestFullscreen) { // IE/Edge
+                img.msRequestFullscreen();
+            }
+        }
+
+        function sendCustomMessage() {
+            const teacherName = document.getElementById('teacherName').value.trim();
+            const customMessage = document.getElementById('customMessage').value.trim();
+
+            if (teacherName === "" || customMessage === "") {
+                alert("Please enter both the teacher's name and a message before sending.");
+                return;
+            }
+
+            const message = `Sending to ${teacherName}: "${customMessage}"`;
+            displayThankYouMessage(message);
+            // Call other functions like triggerConfetti(), playSound(), triggerNinja() if needed
+            document.getElementById('teacherName').value = "";
+            document.getElementById('customMessage').value = "";
+        }
+
+        function displayThankYouMessage(message) {
+            const thankYouDisplay = document.getElementById('thankYouDisplay');
+            thankYouDisplay.textContent = message;
+            thankYouDisplay.style.display = 'block';
+            // Add any additional functionality if needed
+        }
+    </script>
+</body>
+</html>
